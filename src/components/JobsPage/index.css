@@ -1,0 +1,109 @@
+.jobs-bg-container {
+  background-color: #000000;
+  width: 100vw;
+}
+.jobs-section-container {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input-container {
+  background-color: transparent;
+  border: 1px solid #b6c5ff;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  margin-bottom: 8px;
+  margin-top: 15px;
+}
+.input {
+  border: 0px none transparent;
+  background-color: transparent;
+  outline: none;
+}
+.search-button {
+  align-self: flex-end;
+  padding: 10px;
+  border: 0px none transparent;
+  outline: none;
+}
+.profile-bg-card-container {
+  width: 90%;
+}
+.profile-bg {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
+  background-size: cover;
+  padding: 15px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.profile-pic {
+  width: 50px;
+}
+.profile-name {
+  color: #6366f1;
+  font-family: 'Roboto';
+}
+.bio-text {
+  color: #2c364c;
+  font-family: 'Roboto';
+}
+.line {
+  color: #f1f5f9;
+  border-width: 1px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.employment-type-heading {
+  color: #ffffff;
+  font-family: 'Roboto';
+}
+.inp-checkbox {
+  outline: none;
+  margin-right: 10px;
+}
+.type-label-text {
+  color: #ffffff;
+  font-family: 'Roboto';
+}
+.jobs-section-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+  padding: 0px;
+}
+.failure-job-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.failure-img {
+  width: 70%;
+}
+.wrong-text {
+  color: #ffffff;
+  font-family: 'Roboto';
+}
+.wrong-caption {
+  color: #cbd5e1;
+  font-family: 'Roboto';
+}
+.retry-button {
+  outline: none;
+  border: 0px none transparent;
+  color: #ffffff;
+  font-family: 'Roboto';
+  background-color: #4f46e5;
+  padding: 8px;
+}

@@ -156,10 +156,6 @@ class JobItemDetails extends Component {
     )
   }
 
-  retryApiJobs = () => {
-    this.getJobsData()
-  }
-
   renderJobsFailureView = () => (
     <div className="failure-job-container">
       <img
@@ -180,6 +176,10 @@ class JobItemDetails extends Component {
       </button>
     </div>
   )
+
+  retryApiJobs = () => {
+    this.getSpecificJobsData()
+  }
 
   renderLoadingView = () => (
     <div className="loader-container" data-testid="loader">

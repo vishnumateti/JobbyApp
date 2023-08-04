@@ -65,7 +65,7 @@ class JobsPage extends Component {
     jobsData: [],
     apiJobsStatus: apiJobsStatusConstants.initial,
     employType: [],
-    radioInput: '',
+    salaryRange: '',
     searchInput: '',
   }
 
@@ -83,9 +83,9 @@ class JobsPage extends Component {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    const {searchInput, employType, radioInput} = this.state
+    const {searchInput, employType, salaryRange} = this.state
     console.log(employType)
-    const url = `https://apis.ccbp.in/jobs?employment_type=${employType}&minimum_package=${radioInput}&search=${searchInput}`
+    const url = `https://apis.ccbp.in/jobs?employment_type=${employType}&minimum_package=${salaryRange}&search=${searchInput}`
     console.log(url)
     const response = await fetch(url, options)
     if (response.ok) {
@@ -111,7 +111,7 @@ class JobsPage extends Component {
   }
 
   onClickSalaryRange = event => {
-    this.setState({radioInput: event.target.id}, this.getJobsData)
+    this.setState({salaryRange: event.target.id}, this.getJobsData)
   }
 
   onClickEmployType = event => {

@@ -84,8 +84,9 @@ class JobsPage extends Component {
       },
     }
     const {searchInput, employType, radioInput} = this.state
-    employType.join(',')
+    console.log(employType)
     const url = `https://apis.ccbp.in/jobs?employment_type=${employType}&minimum_package=${radioInput}&search=${searchInput}`
+    console.log(url)
     const response = await fetch(url, options)
     if (response.ok) {
       const data = await response.json()
@@ -115,16 +116,16 @@ class JobsPage extends Component {
 
   onClickEmployType = event => {
     const {employType} = this.state
-    const inputsNotInList = employType.filter(
-      eachType => eachType === event.target.id,
-    )
-    if (inputsNotInList.length === 0) {
+    const inputsNotInList = employType.includes(event.target.id)
+    console.log(inputsNotInList)
+    if (inputsNotInList === false) {
       this.setState(
         prevState => ({employType: [...prevState.employType, event.target.id]}),
         this.getJobsData,
       )
     } else {
       const filteredData = employType.filter(each => each !== event.target.id)
+      console.log(filteredData)
       this.setState(
         {
           employType: filteredData,
@@ -208,7 +209,7 @@ class JobsPage extends Component {
       />
       <h1 className="wrong-text">Oops! Something Went Wrong</h1>
       <p className="wrong-caption">
-        We cannot seem to find the page you are looking for.
+        We cannot seem to find the page you are looking for
       </p>
       <button
         type="button"

@@ -73,7 +73,7 @@ class JobItemDetails extends Component {
         similarJobsList: similarJobsData,
       })
     } else {
-      this.setState({apiStatus: apiJobsStatusConstants.inProgress})
+      this.setState({apiStatus: apiJobsStatusConstants.failure})
     }
   }
 

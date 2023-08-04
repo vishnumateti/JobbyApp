@@ -13,44 +13,38 @@ const Header = props => {
   }
   return (
     <nav className="nav-container">
-      <ul>
+      <Link to="/">
+        <img
+          className="nav-logo"
+          alt="website logo"
+          src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
+        />
+      </Link>
+      <li className="nav-options-sm-container">
         <Link to="/">
-          <img
-            className="nav-logo"
-            alt="website logo"
-            src="https://assets.ccbp.in/frontend/react-js/logo-img.png "
-          />
+          <AiFillHome className="icons" />
         </Link>
-        <li className="nav-options-sm-container">
-          <Link to="/">
-            <AiFillHome className="icons" />
+        <Link to="/jobs">
+          <BsFillBriefcaseFill className="icons" />
+        </Link>
+        <Link to="/login">
+          <FiLogOut className="icons" />
+        </Link>
+      </li>
+      <li className="nav-options-lg-container">
+        <ul className="home-jobs-options-container">
+          <Link to="/" className="link-text">
+            <li className="home-text">Home</li>
           </Link>
-          <Link to="/jobs">
-            <BsFillBriefcaseFill className="icons" />
+          <Link to="/jobs" className="link-text">
+            <li className="home-text">Jobs</li>
           </Link>
-          <Link to="/login">
-            <FiLogOut className="icons" />
-          </Link>
-        </li>
-        <li className="nav-options-lg-container">
-          <ul className="home-jobs-options-container">
-            <Link to="/" className="link-text">
-              <li className="home-text">Home</li>
-            </Link>
-            <Link to="/jobs" className="link-text">
-              <li className="home-text">Jobs</li>
-            </Link>
-          </ul>
+        </ul>
 
-          <button
-            className="logout-button"
-            type="button"
-            onClick={logoutButton}
-          >
-            Logout
-          </button>
-        </li>
-      </ul>
+        <button className="logout-button" type="button" onClick={logoutButton}>
+          Logout
+        </button>
+      </li>
     </nav>
   )
 }

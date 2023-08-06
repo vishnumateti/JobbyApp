@@ -84,7 +84,7 @@ class JobsPage extends Component {
       },
     }
     const {searchInput, employType, salaryRange} = this.state
-    console.log(employType)
+
     const url = `https://apis.ccbp.in/jobs?employment_type=${employType}&minimum_package=${salaryRange}&search=${searchInput}`
     console.log(url)
     const response = await fetch(url, options)
@@ -125,7 +125,7 @@ class JobsPage extends Component {
       )
     } else {
       const filteredData = employType.filter(each => each !== event.target.id)
-      console.log(filteredData)
+
       this.setState(
         {
           employType: filteredData,
@@ -222,7 +222,7 @@ class JobsPage extends Component {
   )
 
   renderJobsSuccessView = () => {
-    const {jobsData} = this.state
+    const {jobsData, searchInput} = this.state
     const noJobs = jobsData.length === 0
 
     return noJobs ? (
@@ -235,11 +235,31 @@ class JobsPage extends Component {
         <p>We could not find any jobs. Try other filters.</p>
       </div>
     ) : (
-      <ul className="jobs-section-container">
-        {jobsData.map(eachJob => (
-          <JobsItem key={eachJob.id} jobDetails={eachJob} />
-        ))}
-      </ul>
+      <div className="jobs-container-lg">
+        <div className="input-container-lg">
+          <input
+            value={searchInput}
+            type="search"
+            placeholder="search"
+            className="input"
+            onChange={this.searchInputValue}
+            onKeyDown={this.enterSearchResults}
+          />
+          <button
+            type="button"
+            data-testid="searchButton"
+            className="search-button"
+            onClick={this.onSubmitSearch}
+          >
+            <BsSearch className="search-icon" />
+          </button>
+        </div>
+        <ul className="jobs-ul-section-container">
+          {jobsData.map(eachJob => (
+            <JobsItem key={eachJob.id} jobDetails={eachJob} />
+          ))}
+        </ul>
+      </div>
     )
   }
 
@@ -255,7 +275,7 @@ class JobsPage extends Component {
           <p className="bio-text">{shortBio}</p>
         </div>
         <hr className="line" />
-        <ul>
+        <ul className="employee-container">
           <h1 className="employment-type-heading">Type of Employment</h1>
 
           {employmentTypesList.map(eachType => (
@@ -264,6 +284,7 @@ class JobsPage extends Component {
                 className="inp-checkbox"
                 type="checkbox"
                 id={eachType.employmentTypeId}
+                value={eachType.employmentTypeId}
                 onChange={this.onClickEmployType}
               />
               <label
@@ -276,7 +297,7 @@ class JobsPage extends Component {
           ))}
         </ul>
         <hr className="line" />
-        <ul>
+        <ul className="employee-container">
           <h1 className="employment-type-heading">Salary Range</h1>
           {salaryRangesList.map(eachSalary => (
             <li key={eachSalary.salaryRangeId}>
@@ -284,6 +305,7 @@ class JobsPage extends Component {
                 className="inp-checkbox"
                 type="radio"
                 name="option"
+                value={eachSalary.salaryRangeId}
                 id={eachSalary.salaryRangeId}
                 onChange={this.onClickSalaryRange}
               />
@@ -340,26 +362,28 @@ class JobsPage extends Component {
       <div className="jobs-bg-container">
         <Header />
         <div className="jobs-section-container">
-          <div className="input-container">
-            <input
-              value={searchInput}
-              type="search"
-              placeholder="search"
-              className="input"
-              onChange={this.searchInputValue}
-              onKeyDown={this.enterSearchResults}
-            />
-            <button
-              type="button"
-              data-testid="searchButton"
-              className="search-button"
-              onClick={this.onSubmitSearch}
-            >
-              <BsSearch className="search-icon" />
-            </button>
+          <div className="profile-container">
+            <div className="input-container">
+              <input
+                value={searchInput}
+                type="search"
+                placeholder="search"
+                className="input"
+                onChange={this.searchInputValue}
+                onKeyDown={this.enterSearchResults}
+              />
+              <button
+                type="button"
+                data-testid="searchButton"
+                className="search-button"
+                onClick={this.onSubmitSearch}
+              >
+                <BsSearch className="search-icon" />
+              </button>
+            </div>
+            {this.renderProfileSection()}
           </div>
-          {this.renderProfileSection()}
-          {this.renderJobsData()}
+          <div className="jobs-card-container">{this.renderJobsData()}</div>
         </div>
       </div>
     )

@@ -42,7 +42,9 @@ class JobItemDetails extends Component {
     const response = await fetch(url, options)
     if (response.ok) {
       const data = await response.json()
+      console.log(data)
       const specifiedJobDetails = {
+        title: data.job_details.title,
         companyLogoUrl: data.job_details.company_logo_url,
         companyWebsiteUrl: data.job_details.company_website_url,
         employmentType: data.job_details.employment_type,
@@ -66,6 +68,7 @@ class JobItemDetails extends Component {
         location: similarJob.location,
         rating: similarJob.rating,
         title: similarJob.title,
+        id: similarJob.id,
       }))
       this.setState({
         apiStatus: apiJobsStatusConstants.success,
@@ -129,29 +132,33 @@ class JobItemDetails extends Component {
           </div>
           <p className="description">{jobDescription}</p>
         </div>
-        <h1>Skills</h1>
-        <ul>
-          {skills.map(eachSkill => (
-            <li key={eachSkill.name}>
-              <img alt={eachSkill.name} src={eachSkill.imageUrl} />
-              <p>{eachSkill.name}</p>
-            </li>
-          ))}
-        </ul>
+        <li>
+          <h1>Skills</h1>
+          <ul>
+            {skills.map(eachSkill => (
+              <li key={eachSkill.name}>
+                <img alt={eachSkill.name} src={eachSkill.imageUrl} />
+                <p>{eachSkill.name}</p>
+              </li>
+            ))}
+          </ul>
+        </li>
         <div>
           <h1>Life at Company</h1>
           <p>{description}</p>
           <img alt="life at company" src={imageUrl} />
         </div>
-        <h1>Similar Jobs</h1>
-        <ul>
-          {similarJobsList.map(eachSimilar => (
-            <SimilarJobItem
-              key={eachSimilar.id}
-              similarJobDetails={eachSimilar}
-            />
-          ))}
-        </ul>
+        <li>
+          <h1>Similar Jobs</h1>
+          <ul>
+            {similarJobsList.map(eachSimilar => (
+              <SimilarJobItem
+                key={eachSimilar.id}
+                similarJobDetails={eachSimilar}
+              />
+            ))}
+          </ul>
+        </li>
       </div>
     )
   }

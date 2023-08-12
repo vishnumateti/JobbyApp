@@ -116,9 +116,11 @@ class JobsPage extends Component {
 
   onClickEmployType = event => {
     const {employType} = this.state
-    const inputsNotInList = employType.includes(event.target.id)
+    const inputsNotInList = employType.filter(
+      eachItem => eachItem === event.target.id,
+    )
     console.log(inputsNotInList)
-    if (inputsNotInList === false) {
+    if (inputsNotInList.length === 0) {
       this.setState(
         prevState => ({employType: [...prevState.employType, event.target.id]}),
         this.getJobsData,
@@ -284,7 +286,6 @@ class JobsPage extends Component {
                 className="inp-checkbox"
                 type="checkbox"
                 id={eachType.employmentTypeId}
-                value={eachType.employmentTypeId}
                 onChange={this.onClickEmployType}
               />
               <label
@@ -305,7 +306,6 @@ class JobsPage extends Component {
                 className="inp-checkbox"
                 type="radio"
                 name="option"
-                value={eachSalary.salaryRangeId}
                 id={eachSalary.salaryRangeId}
                 onChange={this.onClickSalaryRange}
               />
@@ -357,7 +357,8 @@ class JobsPage extends Component {
   }
 
   render() {
-    const {searchInput} = this.state
+    const {searchInput, employType} = this.state
+    console.log(employType)
     return (
       <div className="jobs-bg-container">
         <Header />

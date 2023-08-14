@@ -2,9 +2,11 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {AiFillStar} from 'react-icons/ai'
-import {BsFillBriefcaseFill} from 'react-icons/bs'
+import {BsFillBriefcaseFill, BsBoxArrowUpRight} from 'react-icons/bs'
+import {MdLocationOn} from 'react-icons/md'
 import SimilarJobItem from '../SimilarJobItem'
 import Header from '../Header'
+import './index.css'
 
 const apiJobsStatusConstants = {
   initial: 'INITIAL',
@@ -42,7 +44,7 @@ class JobItemDetails extends Component {
     const response = await fetch(url, options)
     if (response.ok) {
       const data = await response.json()
-      console.log(data)
+
       const specifiedJobDetails = {
         title: data.job_details.title,
         companyLogoUrl: data.job_details.company_logo_url,
@@ -97,60 +99,74 @@ class JobItemDetails extends Component {
     const {description, imageUrl} = lifeAtCompany
 
     return (
-      <div>
-        <div className="jobs-list-container">
+      <div className="specified-job-container">
+        <div className="jobs-list-container1">
           <div className="logo-title-container">
             <img
-              className="tech-logo"
+              className="tech-logo1"
               alt="job details company logo"
               src={companyLogoUrl}
             />
             <div className="title-container">
-              <h1 className="job-title">{title}</h1>
-              <div className="rating-container">
-                <AiFillStar className="star-logo" />
-                <p className="rating">{rating}</p>
+              <h1 className="job-title1">{title}</h1>
+              <div className="rating-container1">
+                <AiFillStar className="star-logo1" />
+                <p className="rating1">{rating}</p>
               </div>
             </div>
           </div>
           <div className="location-jobs-package-container">
             <div className="location-jobs-container">
               <div className="location-container">
-                <p className="location">{location}</p>
+                <MdLocationOn className="pin-icon1" />
+                <p className="location1">{location}</p>
               </div>
               <div className="location-container">
-                <BsFillBriefcaseFill className="pin-icon" />
-                <p className="location">{employmentType}</p>
+                <BsFillBriefcaseFill className="pin-icon1" />
+                <p className="location1">{employmentType}</p>
               </div>
             </div>
-            <p className="location">{packagePerAnnum}</p>
+            <p className="location1">{packagePerAnnum}</p>
           </div>
           <hr />
-          <div>
+          <div className="desc-visit-container">
             <h1 className="description">Description</h1>
-            <a href={companyWebsiteUrl}>Visit</a>
+            <div className="visit-arrow-container">
+              <a href={companyWebsiteUrl} className="visit">
+                Visit
+              </a>
+              <BsBoxArrowUpRight className="arrow-size" />
+            </div>
           </div>
-          <p className="description">{jobDescription}</p>
+          <p className="description-para1">{jobDescription}</p>
+
+          <li className="skills-list">
+            <h1 className="skills">Skills</h1>
+            <ul className="unlist-container">
+              {skills.map(eachSkill => (
+                <li className="list-skills-container" key={eachSkill.name}>
+                  <img
+                    className="skills-logo"
+                    alt={eachSkill.name}
+                    src={eachSkill.imageUrl}
+                  />
+                  <p className="skill-tech">{eachSkill.name}</p>
+                </li>
+              ))}
+            </ul>
+          </li>
+
+          <h1 className="description">Life at Company</h1>
+
+          <div className="life-company-container">
+            <p className="description-para1">{description}</p>
+
+            <img className="life-image" alt="life at company" src={imageUrl} />
+          </div>
         </div>
-        <li>
-          <h1>Skills</h1>
-          <ul>
-            {skills.map(eachSkill => (
-              <li key={eachSkill.name}>
-                <img alt={eachSkill.name} src={eachSkill.imageUrl} />
-                <p>{eachSkill.name}</p>
-              </li>
-            ))}
-          </ul>
-        </li>
-        <div>
-          <h1>Life at Company</h1>
-          <p>{description}</p>
-          <img alt="life at company" src={imageUrl} />
-        </div>
-        <li>
-          <h1>Similar Jobs</h1>
-          <ul>
+        <li className="similar-job-container">
+          <h1 className="similar-job-heading">Similar Jobs</h1>
+          <ul className="unlist-similar-jobs-container">
             {similarJobsList.map(eachSimilar => (
               <SimilarJobItem
                 key={eachSimilar.id}
@@ -210,7 +226,7 @@ class JobItemDetails extends Component {
 
   render() {
     return (
-      <div>
+      <div className="job-item-bg-container">
         <Header />
         {this.renderSpecifiedJobs()}
       </div>

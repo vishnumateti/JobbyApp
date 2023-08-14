@@ -225,13 +225,16 @@ class JobsPage extends Component {
     const noJobs = jobsData.length === 0
 
     return noJobs ? (
-      <div>
+      <div className="no-jobs-container">
         <img
+          className="no-job-image"
           alt="no jobs"
           src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
         />
-        <h1>No Jobs Found</h1>
-        <p>We could not find any jobs. Try other filters.</p>
+        <h1 className="no-jobs-heading">No Jobs Found</h1>
+        <p className="no-job-caption">
+          We could not find any jobs. Try other filters.
+        </p>
       </div>
     ) : (
       <div className="jobs-container-lg">

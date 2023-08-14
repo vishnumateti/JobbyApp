@@ -1,0 +1,15 @@
+.similar-jobs-list-container {
+  background-color: #272727;
+  border: 0px none transparent;
+  border-radius: 8px;
+  padding: 12px;
+  list-style-type: none;
+  margin: 5px;
+  width: 100%;
+}
+.description1 {
+  color: #f8fafc;
+  font-family: 'Roboto';
+  font-size: 19px;
+  font-weight: 300;
+}

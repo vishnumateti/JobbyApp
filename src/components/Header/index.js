@@ -27,7 +27,7 @@ const Header = props => {
         <Link to="/jobs">
           <BsFillBriefcaseFill className="icons" />
         </Link>
-        <Link to="/login">
+        <Link to="/login" onClick={logoutButton}>
           <FiLogOut className="icons" />
         </Link>
       </li>

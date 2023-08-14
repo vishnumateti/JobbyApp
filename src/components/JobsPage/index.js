@@ -116,22 +116,19 @@ class JobsPage extends Component {
 
   onClickEmployType = event => {
     const {employType} = this.state
-    const inputsNotInList = employType.filter(
-      eachItem => eachItem === event.target.id,
-    )
+    const inputsNotInList = employType.includes(event.target.id)
     console.log(inputsNotInList)
-    if (inputsNotInList.length === 0) {
-      this.setState(
-        prevState => ({employType: [...prevState.employType, event.target.id]}),
-        this.getJobsData,
-      )
-    } else {
+    if (inputsNotInList) {
       const filteredData = employType.filter(each => each !== event.target.id)
-
       this.setState(
         {
           employType: filteredData,
         },
+        this.getJobsData,
+      )
+    } else {
+      this.setState(
+        prevState => ({employType: [...prevState.employType, event.target.id]}),
         this.getJobsData,
       )
     }
@@ -345,8 +342,6 @@ class JobsPage extends Component {
   renderProfileSection = () => {
     const {apiProfileStatus} = this.state
     switch (apiProfileStatus) {
-      case apiProfileStatusConstants.inProgress:
-        return this.renderLoadingView()
       case apiProfileStatusConstants.success:
         return this.renderProfileSuccessView()
       case apiProfileStatusConstants.failure:
@@ -357,8 +352,7 @@ class JobsPage extends Component {
   }
 
   render() {
-    const {searchInput, employType} = this.state
-    console.log(employType)
+    const {searchInput} = this.state
     return (
       <div className="jobs-bg-container">
         <Header />

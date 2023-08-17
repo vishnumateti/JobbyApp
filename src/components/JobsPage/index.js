@@ -276,48 +276,6 @@ class JobsPage extends Component {
           <h1 className="profile-name">{name}</h1>
           <p className="bio-text">{shortBio}</p>
         </div>
-        <hr className="line" />
-        <ul className="employee-container">
-          <h1 className="employment-type-heading">Type of Employment</h1>
-
-          {employmentTypesList.map(eachType => (
-            <li key={eachType.employmentTypeId}>
-              <input
-                className="inp-checkbox"
-                type="checkbox"
-                id={eachType.employmentTypeId}
-                onChange={this.onClickEmployType}
-              />
-              <label
-                className="type-label-text"
-                htmlFor={eachType.employmentTypeId}
-              >
-                {eachType.label}
-              </label>
-            </li>
-          ))}
-        </ul>
-        <hr className="line" />
-        <ul className="employee-container">
-          <h1 className="employment-type-heading">Salary Range</h1>
-          {salaryRangesList.map(eachSalary => (
-            <li key={eachSalary.salaryRangeId}>
-              <input
-                className="inp-checkbox"
-                type="radio"
-                name="option"
-                id={eachSalary.salaryRangeId}
-                onChange={this.onClickSalaryRange}
-              />
-              <label
-                className="type-label-text"
-                htmlFor={eachSalary.salaryRangeId}
-              >
-                {eachSalary.label}
-              </label>
-            </li>
-          ))}
-        </ul>
       </div>
     )
   }
@@ -361,6 +319,7 @@ class JobsPage extends Component {
         <Header />
         <div className="jobs-section-container">
           <div className="profile-container">
+            {this.renderProfileSection()}
             <div className="input-container">
               <input
                 value={searchInput}
@@ -379,7 +338,48 @@ class JobsPage extends Component {
                 <BsSearch className="search-icon" />
               </button>
             </div>
-            {this.renderProfileSection()}
+            <hr className="line" />
+            <ul className="employee-container">
+              <h1 className="employment-type-heading">Type of Employment</h1>
+
+              {employmentTypesList.map(eachType => (
+                <li key={eachType.employmentTypeId}>
+                  <input
+                    className="inp-checkbox"
+                    type="checkbox"
+                    id={eachType.employmentTypeId}
+                    onChange={this.onClickEmployType}
+                  />
+                  <label
+                    className="type-label-text"
+                    htmlFor={eachType.employmentTypeId}
+                  >
+                    {eachType.label}
+                  </label>
+                </li>
+              ))}
+            </ul>
+            <hr className="line" />
+            <ul className="employee-container">
+              <h1 className="employment-type-heading">Salary Range</h1>
+              {salaryRangesList.map(eachSalary => (
+                <li key={eachSalary.salaryRangeId}>
+                  <input
+                    className="inp-checkbox"
+                    type="radio"
+                    name="option"
+                    id={eachSalary.salaryRangeId}
+                    onChange={this.onClickSalaryRange}
+                  />
+                  <label
+                    className="type-label-text"
+                    htmlFor={eachSalary.salaryRangeId}
+                  >
+                    {eachSalary.label}
+                  </label>
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="jobs-card-container">{this.renderJobsData()}</div>
         </div>
